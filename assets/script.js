@@ -1,7 +1,3 @@
-// The app should:
-
-// Display the current day at the top of the calender when a user opens the planner.
-//target currentDay id
 // Present time blocks for standard business hours when the user scrolls down.
 //put timeblocks in html
 // Color-code each time block based on past, present, and future when the time block is viewed.
@@ -14,5 +10,11 @@
 
 const todaysDate = dayjs();
 
-document.getElementById("currentDay", todaysDate);
+const todayDateDisplay = document.getElementById("currentDay");
+todayDateDisplay.textContent=todaysDate
 console.log(todaysDate);
+
+const timeBlock = getElementById("timeblock")
+
+
+
