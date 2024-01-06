@@ -25,38 +25,33 @@
     </head>
 
     <body>
-        <header>
+        <header class="jumbotron">
+            <div class="container"></div>
             <h1 class="display-3">Work Day Scheduler</h1>
             <p class="lead">
-                A simple calendar app for scheduling your work day
+                A simple calendar app for scheduling your work day - workin' 9
+                'til 5
             </p>
             <p id="currentDay" class="lead"></p>
         </header>
-        <div class="container, description">
-            <!-- Timeblocks go here -->
-            <ul class="time-block, row, hour" id="timeblock"
-            <li>6am</li>
-                <btn class="btn saveBtn" id="save-button"></btn>
-                <li>7am</li>
-                <li>8am</li>
-                <li>9am</li>
-                <li>10am</li>
-                <li>11am</li>
-                <li>noon</li>
-                <li>1pm</li>
-                <li>2pm</li>
-                <li>3pm</li>
-                <li>4pm</li>
-                <li>5pm</li>
-            </ul> 
+        <!-- Timeblocks go here -->
+        <!--9-10AM-->
+        <div class="time-block" id="1">
+            <div class="row input-group"></div>
         </div>
-        
+        <!-- <div class="container text-center timeblock" id="9am">
+            <div class="text-end col-2 h3 fw-bold hour">6am</div>
+            <textarea class="col-8 description"></textarea>
+            <button class="col-2 saveBtn">
+                <i class="far fa-2x fa-save fa-floppy-disk"></i>
+            </button>
+        </div> -->
+        <!--9-10AM-->
+
         <!--added js-->
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-        <head>
-          
-          </head>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <head> </head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
         <script src="/assets/script.js"></script>
     </body>
