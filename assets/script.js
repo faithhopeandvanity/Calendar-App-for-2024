@@ -9,7 +9,8 @@ dayjs.locale(localeSettings);
 // Persist events between refreshes of a page
 
 //using dayjs to make the date dynamic
-const theTimeRightNow = dayjs().format("H:mm:ss");
+//using "H" to round by hour, so that the colour blocks can be correctly colour-coded 
+const theTimeRightNow = dayjs().format("H");
 
 //display today's date below information copy
 const todayDateDisplay = document.getElementById("currentDay");
