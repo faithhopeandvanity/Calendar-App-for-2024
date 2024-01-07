@@ -1,5 +1,6 @@
+const localeSettings = {};
+  dayjs.locale(localeSettings);
 
-//put timeblocks in html
 // Color-code each time block based on past, present, and future when the time block is viewed.
 //use dayjs to determine if day is today, past or ahead
 // Allow a user to enter an event when they click a time block
@@ -8,39 +9,33 @@
 // Persist events between refreshes of a page
 
 //using dayjs to make the date dynamic
-const todaysDate = dayjs();
+const theTimeRightNow = dayjs();
 
 //display today's date below information copy
 const todayDateDisplay = document.getElementById("currentDay");
-todayDateDisplay.textContent = todaysDate;
-console.log(todaysDate);
+todayDateDisplay.textContent = theTimeRightNow;
+console.log(theTimeRightNow);
 
+$(function () {
+    // // Get the current hour of the day using the dayjs library.
+    // const currentHour = dayjs().format('H');
+  // The function below changes the color of each time block based on whether it's in the "past, present, or future" relative to the current hour.
+    function hourlyColour() {
+      $('.time-block').each(function() {
+        const blockHour = parseInt(this.id);
+        $(this).toggleClass('past', blockHour < theTimeRightNow);
+        $(this).toggleClass('present', blockHour === theTimeRightNow);
+        $(this).toggleClass('future', blockHour > theTimeRightNow);
+      });
+    }
 
-
-//check Local Storage//
-var daysTasks = JSON.parse(localStorage.getItem("workDay"));
-if (daysTasks) {
-  planWorkday = daysTasks;
-}
-
-/* Create rows */
-planWorkday.forEach(function(timeBlock, index) {
-	var timeLabel = timeBlock.time;
-	var blockColour = colorRow(timeLabel);
-	var row =
-		'<div class="time-block" id="' +
-		index +
-		'"><div class="row no-gutters input-group"><div class="col-sm col-lg-1 input-group-prepend hour justify-content-sm-end pr-3 pt-3">' +
-		timeLabel +
-		'</div><textarea class="form-control ' +
-		blockColour +
-		'">' +
-		timeBlock.event +
-		'</textarea><div class="col-sm col-lg-1 input-group-append"><button class="saveBtn btn-block" type="submit"><i class="fas fa-save"></i></button></div></div></div>';
-
-	/* Adding rows to container div */
-	$(".container").append(row);
-});
+    function textEntry() {
+        $('.saveBtn').on('click', function() {
+          const key = $(this).parent().attr('id');
+          const value = $(this).siblings('.description').val();
+          localStorage.setItem(key, value);
+        });
+      }
 
 // const saveEvent
 
@@ -56,62 +51,5 @@ planWorkday.forEach(function(timeBlock, index) {
 //     console.log("saved event");
 // });
 
-//variable to loop through hours
-var theDayToday = [
-    {
-        index: "0",
-        hour: "09",
-        time: "09",
-        morningOrAfternoon: "am",
-        eventAlert: "",
-    },
-    {
-        index: "1",
-        hour: "10",
-        time: "10",
-        morningOrAfternoon: "am",
-        eventAlert: "",
-    },
-    {
-        index: "2",
-        hour: "11",
-        time: "11",
-        morningOrAfternoon: "am",
-        eventAlert: "",
-    },
-    {
-        index: "3",
-        hour: "12",
-        time: "12",
-        morningOrAfternoon: "pm",
-        eventAlert: "",
-    },
-    {
-        index: "4",
-        hour: "13",
-        time: "13",
-        morningOrAfternoon: "pm",
-        eventAlert: "",
-    },
-    {
-        index: "5",
-        hour: "14",
-        time: "14",
-        morningOrAfternoon: "pm",
-        eventAlert: "",
-    },
-    {
-        index: "6",
-        hour: "15",
-        time: "15",
-        morningOrAfternoon: "pm",
-        eventAlert: "",
-    },
-    {
-        index: "7",
-        hour: "16",
-        time: "16",
-        morningOrAfternoon: "pm",
-        eventAlert: "",
-    },
-];
+
+
