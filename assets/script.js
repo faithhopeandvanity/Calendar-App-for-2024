@@ -1,5 +1,5 @@
 const localeSettings = {};
-  dayjs.locale(localeSettings);
+dayjs.locale(localeSettings);
 
 // Color-code each time block based on past, present, and future when the time block is viewed.
 //use dayjs to determine if day is today, past or ahead
@@ -9,7 +9,7 @@ const localeSettings = {};
 // Persist events between refreshes of a page
 
 //using dayjs to make the date dynamic
-const theTimeRightNow = dayjs();
+const theTimeRightNow = dayjs().format("H:mm:ss");
 
 //display today's date below information copy
 const todayDateDisplay = document.getElementById("currentDay");
@@ -17,25 +17,47 @@ todayDateDisplay.textContent = theTimeRightNow;
 console.log(theTimeRightNow);
 
 $(function () {
-    // // Get the current hour of the day using the dayjs library.
-    // const currentHour = dayjs().format('H');
-  // The function below changes the color of each time block based on whether it's in the "past, present, or future" relative to the current hour.
-    function hourlyColour() {
-      $('.time-block').each(function() {
-        const blockHour = parseInt(this.id);
-        $(this).toggleClass('past', blockHour < theTimeRightNow);
-        $(this).toggleClass('present', blockHour === theTimeRightNow);
-        $(this).toggleClass('future', blockHour > theTimeRightNow);
-      });
+    function hourByColour() {
+        $(".time-block").each(function () {
+            const blockHour = parseInt(this.id);
+            $(this).toggleClass("past", blockHour < theTimeRightNow);
+            $(this).toggleClass("present", blockHour === theTimeRightNow);
+            $(this).toggleClass("future", blockHour > theTimeRightNow);
+        });
     }
 
-    function textEntry() {
-        $('.saveBtn').on('click', function() {
-          const key = $(this).parent().attr('id');
-          const value = $(this).siblings('.description').val();
-          localStorage.setItem(key, value);
+    function enterEvent() {
+        $(".saveBtn").on("click", function () {
+            const key = $(this).parent().attr("id");
+            const value = $(this).siblings(".description").val();
+            localStorage.setItem(key, value);
         });
-      }
+    }
+
+    function refreshColour() {
+        $(".time-block").each(function () {
+            const blockHour = parseInt(this.id);
+            if (blockHour == theTimeRightNow) {
+                $(this).removeClass("past future").addClass("present");
+            } else if (blockHour < theTimeRightNow) {
+                $(this).removeClass("future present").addClass("past");
+            } else {
+                $(this).removeClass("past present").addClass("future");
+            }
+        });
+    }
+
+    $(".time-block").each(function () {
+        const key = $(this).attr("id");
+        const value = localStorage.getItem(key);
+        $(this).children(".description").val(value);
+    });
+
+    hourByColour();
+    enterEvent();
+    refreshColour();
+    setInterval(updateTime, 1000);
+});
 
 // const saveEvent
 
@@ -50,6 +72,3 @@ $(function () {
 // $(".saveBtn").on("click", function () {
 //     console.log("saved event");
 // });
-
-
-
