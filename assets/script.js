@@ -9,8 +9,8 @@ dayjs.locale(localeSettings);
 // Persist events between refreshes of a page
 
 //using dayjs to make the date dynamic
-//using "H" to round by hour, so that the colour blocks can be correctly colour-coded 
-const today = dayjs()
+//using "H" to round by hour, so that the colour blocks can be correctly colour-coded
+const today = dayjs();
 const theTimeRightNow = dayjs().format("H");
 
 //display today's date below information copy
@@ -18,6 +18,7 @@ const todayDateDisplay = document.getElementById("currentDay");
 todayDateDisplay.textContent = today;
 console.log(today);
 
+//colour-code time slots
 $(function () {
     function hourByColour() {
         $(".time-block").each(function () {
@@ -28,6 +29,7 @@ $(function () {
         });
     }
 
+    //listen for a click on the save button to save the input to storage
     function enterEvent() {
         $(".saveBtn").on("click", function () {
             const key = $(this).parent().attr("id");
@@ -36,6 +38,7 @@ $(function () {
         });
     }
 
+    //refresh colour coding
     function refreshColour() {
         $(".time-block").each(function () {
             const blockHour = parseInt(this.id);
@@ -54,23 +57,10 @@ $(function () {
         const value = localStorage.getItem(key);
         $(this).children(".description").val(value);
     });
-
+    //run the functions
     hourByColour();
     enterEvent();
     refreshColour();
+    //set interval to 1000, so that the display would change every second.
     setInterval(updateTime, 1000);
 });
-
-// const saveEvent
-
-//use .each in jquery
-
-//targeting time blocks by class
-// const timeBlockTarget = document.getElementsByClassName("timeblock");
-
-//colour coding
-
-// Save the event in local storage when the save button is clicked in that time block.
-// $(".saveBtn").on("click", function () {
-//     console.log("saved event");
-// });
