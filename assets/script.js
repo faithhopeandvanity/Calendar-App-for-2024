@@ -10,12 +10,13 @@ dayjs.locale(localeSettings);
 
 //using dayjs to make the date dynamic
 //using "H" to round by hour, so that the colour blocks can be correctly colour-coded 
+const today = dayjs()
 const theTimeRightNow = dayjs().format("H");
 
 //display today's date below information copy
 const todayDateDisplay = document.getElementById("currentDay");
-todayDateDisplay.textContent = theTimeRightNow;
-console.log(theTimeRightNow);
+todayDateDisplay.textContent = today;
+console.log(today);
 
 $(function () {
     function hourByColour() {
