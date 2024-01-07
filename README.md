@@ -10,8 +10,6 @@ I didn't need to touch the stylesheet - the CSS was all provided.
 
 ![screenshot of working app, taken 7-1-24](./img/screencapture-127-0-0-1-5500-index-html-2024-01-07-11_15_12.png)
 
-I found this much more straightforward than the previous challenge, the quiz, and I feel confident in using Day.js to access the time and date.
-
 ## User Story
 
 ```md
